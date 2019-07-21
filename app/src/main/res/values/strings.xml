@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Musica</string>
+    <string name="desc1">Categories Image</string>
+    <string name="desc2">Songs image</string>
+    <string name="categories_text">Categories</string>
+    <string name="songs_text">All songs</string>
+    <string name="welcome_message">Welcome to Musica \n Where we bring the music to you</string>
 </resources>
