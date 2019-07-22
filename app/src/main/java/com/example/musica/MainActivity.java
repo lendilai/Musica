@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        mCategoriesIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
