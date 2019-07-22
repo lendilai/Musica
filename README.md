@@ -1,4 +1,4 @@
-# Musica
+# Musica :dancer:
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 ![](https://img.shields.io/badge/Android-project-brightgreen.svg)
@@ -47,4 +47,4 @@ As of now, there are no known bugs. However you are free to contact me if you co
 You can contact me via my gmail account: ngethenan768@gmail.com
 
 ## License
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit-125x28.png?v=103)]()
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit-125x28.png?v=103)](https://github.com/lendilai/Musica/blob/master/License)
