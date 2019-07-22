@@ -25,7 +25,7 @@ public class SongsAdapter extends ArrayAdapter {
         String artist = mArtists[position];
         String duration = mDurations[position];
         String album = mAlbums[position];
-        return String.format("%s by %s in the album %s \n Duration : %s", songName, artist, album, duration);
+        return String.format("%s ~ %s \n( %s ) \n%s", songName, artist, album, duration);
     }
 
     @Override

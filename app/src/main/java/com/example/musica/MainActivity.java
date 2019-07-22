@@ -3,6 +3,7 @@ package com.example.musica;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +14,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity{
 
     private LinearLayout mCategoriesIcon;
-    private Button mSongsIcon;
+    private LinearLayout mSongsIcon;
+    private TextView mTagPhrase;
     private static final String TAG  = MainActivity.class.getSimpleName();
 
     @Override
@@ -21,8 +23,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mCategoriesIcon = (LinearLayout) findViewById(R.id.categories);
-        mSongsIcon = (Button) findViewById(R.id.songs);
-
+        mSongsIcon = (LinearLayout) findViewById(R.id.songs);
+        mTagPhrase = (TextView) findViewById(R.id.tag_phrase);
+//        Typeface kaushan = Typeface.createFromAsset(getAssets(), "fonts/Bebas-Reqular.otf");
+//        mTagPhrase.setTypeface(kaushan);
         mSongsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
