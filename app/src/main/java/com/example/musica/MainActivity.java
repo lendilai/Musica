@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity{
         mCategoriesIcon = (LinearLayout) findViewById(R.id.categories);
         mSongsIcon = (LinearLayout) findViewById(R.id.songs);
         mTagPhrase = (TextView) findViewById(R.id.tag_phrase);
-//        Typeface kaushan = Typeface.createFromAsset(getAssets(), "fonts/Bebas-Reqular.otf");
-//        mTagPhrase.setTypeface(kaushan);
+        Typeface OpenSans = Typeface.createFromAsset(getAssets(), "fonts/PlayfairDisplaySC-Regular.otf");
+        mTagPhrase.setTypeface(OpenSans);
         mSongsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

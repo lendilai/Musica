@@ -35,7 +35,7 @@ public class SongsActivity extends AppCompatActivity {
         mSongsList = (ListView) findViewById(R.id.songs_list);
         SongsAdapter adapter = new SongsAdapter(this, android.R.layout.simple_list_item_1, songs, artists, durations, albums);
         mSongsList.setAdapter(adapter);
-
+        mSongsList.setBackgroundResource(R.drawable.list_styles);
        mSongsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
