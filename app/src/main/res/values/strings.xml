@@ -58,4 +58,28 @@
         <item>So Close</item>
         <item>All This Time</item>
     </string-array>
+    <string-array name="categories">
+        <item>Hip-Hop</item>
+        <item>Rock n Roll</item>
+        <item>Pop</item>
+        <item>RnB</item>
+        <item>Afro</item>
+        <item>House</item>
+        <item>Jazz</item>
+        <item>Reggae</item>
+        <item>Country</item>
+        <item>Latin</item>
+    </string-array>
+    <string-array name="descriptions">
+        <item>Cool beats with fast flow of words</item>
+        <item>Extraordinary music genre</item>
+        <item>Fast paced beats</item>
+        <item>Awesome voices</item>
+        <item>African beats</item>
+        <item>Beats only</item>
+        <item>Low key music</item>
+        <item>Straight outta Jamaica</item>
+        <item>Soothing</item>
+        <item>Latin all day</item>
+    </string-array>
 </resources>
