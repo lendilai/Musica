@@ -40,7 +40,7 @@ public class SongsActivity extends AppCompatActivity {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                String unLoadable = " ' " + songs[i] + " ' " + " cannot load at the moment";
-               Toast.makeText(SongsActivity.this, unLoadable, Toast.LENGTH_LONG).show();
+               Toast.makeText(SongsActivity.this, unLoadable, Toast.LENGTH_SHORT).show();
            }
        });
     }
