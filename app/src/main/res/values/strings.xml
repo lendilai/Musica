@@ -2,10 +2,9 @@
     <string name="app_name">Musica</string>
     <string name="desc1">Categories Image</string>
     <string name="desc2">Songs image</string>
-    <string name="categories_text">Categories</string>
+    <string name="categories_text">Genres</string>
     <string name="songs_text">All songs</string>
     <string name="welcome_message">Welcome to Musica \n Where we bring the music to you</string>
-    <string name="unloadable">The song cannot load at the moment</string>
     <string-array name="songs">
         <item>Not Afraid</item>
         <item>Juicy</item>
@@ -60,7 +59,7 @@
     </string-array>
     <string-array name="categories">
         <item>Hip-Hop</item>
-        <item>Rock n Roll</item>
+        <item>Rock</item>
         <item>Pop</item>
         <item>RnB</item>
         <item>Afro</item>

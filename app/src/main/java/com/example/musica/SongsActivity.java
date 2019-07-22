@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -38,8 +39,8 @@ public class SongsActivity extends AppCompatActivity {
        mSongsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               int unLoadable = R.string.unloadable;
-               Toast.makeText(SongsActivity.this, unLoadable, Toast.LENGTH_SHORT).show();
+               String unLoadable = " ' " + songs[i] + " ' " + " cannot load at the moment";
+               Toast.makeText(SongsActivity.this, unLoadable, Toast.LENGTH_LONG).show();
            }
        });
     }

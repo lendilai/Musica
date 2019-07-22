@@ -12,10 +12,11 @@
         <GridView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnWidth="50sp"
+            android:columnWidth="200sp"
             android:numColumns="2"
+            android:layout_marginTop="20dp"
             android:stretchMode="spacingWidthUniform"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:scrollingCache="false"
             android:id="@+id/categories_grid"
             >

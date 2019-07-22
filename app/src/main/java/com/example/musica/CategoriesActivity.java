@@ -3,7 +3,12 @@ package com.example.musica;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class CategoriesActivity extends AppCompatActivity {
 
@@ -19,5 +24,15 @@ public class CategoriesActivity extends AppCompatActivity {
         descriptions = getResources().getStringArray(R.array.descriptions);
         gridView = (GridView) findViewById(R.id.categories_grid);
         gridView.setAdapter(new CategoriesAdapter(this, categories, descriptions));
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String mDescText = descriptions[i];
+                Toast toast = Toast.makeText(CategoriesActivity.this, mDescText, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.show();
+            }
+        });
     }
 }

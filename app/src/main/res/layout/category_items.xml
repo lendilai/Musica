@@ -9,10 +9,14 @@
         android:orientation="vertical"
         >
         <TextView
-            android:layout_width="60sp"
-            android:layout_height="60sp"
-            android:textSize="25sp"
-            android:gravity="center_horizontal"
+            android:layout_width="150sp"
+            android:layout_height="70sp"
+            android:background="@drawable/genre_background"
+            android:textColor="@color/plainWhite"
+            android:gravity="center"
+            android:padding="17dp"
+            android:textSize="26sp"
+            android:layout_margin="20dp"
             android:layout_weight="1"
             android:id="@+id/category_item"
             />

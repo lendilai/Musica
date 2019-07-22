@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CategoriesAdapter extends BaseAdapter {
     private String[] mCategories;
@@ -32,7 +33,7 @@ public class CategoriesAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
 
@@ -43,6 +44,7 @@ public class CategoriesAdapter extends BaseAdapter {
         }else {
             gridView = (View) convertView;
         }
+
         return gridView;
     }
 
