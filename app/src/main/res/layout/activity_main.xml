@@ -23,15 +23,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="left"
+            android:id="@+id/categories"
             android:paddingRight="70dp"
             android:paddingLeft="20dp"
             android:layout_margin="20dp"
 
             >
+
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="98dp"
-                android:layout_height="77dp"
+                android:layout_width="74dp"
+                android:layout_height="49dp"
                 android:contentDescription="@string/desc1"
                 app:srcCompat="@drawable/categories"
                 tools:layout_editor_absoluteX="16dp"
@@ -49,13 +51,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="right"
+            android:id="@+id/songs"
             android:layout_margin="20dp"
             >
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="98dp"
-                android:layout_height="77dp"
+                android:layout_width="74dp"
+                android:layout_height="49dp"
                 android:contentDescription="@string/desc2"
                 app:srcCompat="@drawable/songs"
                 tools:layout_editor_absoluteX="291dp"
