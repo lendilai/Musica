@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class SongsActivity extends AppCompatActivity {
@@ -31,5 +34,13 @@ public class SongsActivity extends AppCompatActivity {
         mSongsList = (ListView) findViewById(R.id.songs_list);
         SongsAdapter adapter = new SongsAdapter(this, android.R.layout.simple_list_item_1, songs, artists, durations, albums);
         mSongsList.setAdapter(adapter);
+
+       mSongsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               int unLoadable = R.string.unloadable;
+               Toast.makeText(SongsActivity.this, unLoadable, Toast.LENGTH_SHORT).show();
+           }
+       });
     }
 }
