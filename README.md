@@ -16,10 +16,10 @@ If you're not sure which genre suits you best, Musica has got you covered as the
 * Song genres
 
 ## Requirements
-   * Software Development Kit (SDK)
-   * Java Development Kit (JDK)
-   * Android Studio
-   * Gradle
+ * Software Development Kit (SDK)
+ * Java Development Kit (JDK)
+ * Android Studio
+ * Gradle
 
 ### Setup instructions
 1. Clone this repo ``git clone https://github.com/lendilai/Musica.git``
