@@ -23,17 +23,17 @@ If you're not sure which genre suits you best, Musica has got you covered as the
 
 ### Setup instructions
 1. Clone this repo ``git clone https://github.com/lendilai/Musica.git``
-2. Install java. Follow instructions ![on this site](https://thishosting.rocks/install-java-ubuntu/)
+2. Install java. Follow instructions [on this site](https://thishosting.rocks/install-java-ubuntu/)
 3. Install gradle by running the command: ``sdk install gradle``
-4. Download and install ![Android Studio](https://developer.android.com/studio)
+4. Download and install [Android Studio](https://developer.android.com/studio)
 5. After installations, open the project in Android Studio and wait for gradle to complete building the project
 6. Run the app on the inbuilt emulator or on an android phone running Android 4.0.3 and above
 
 
 ## Technologies used
-- [JAVA]() : This is used to implement some of the app functionality.
-- [Android] : This is used to create the user interface and achieve the user interactions
-- [XML] : This is used to position the widgets on the screen
+- [JAVA](https://www.java.com/) : This is used to implement some of the app functionality.
+- [Android](https://developer.android.com/) : This is used to create the user interface and achieve the user interactions
+- [XML](https://www.w3schools.com/xml/xml_whatis.asp) : This is used to position the widgets on the screen
 
 ## Future Releases
 The app is still in its development stages and does achieve maximum functionality.
