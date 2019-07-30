@@ -11,12 +11,12 @@ public class SpotifyService {
 
     public static void findSong(String track, Callback callback){
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
-        HttpUrl.Builder  builder = HttpUrl.parse(Constants.SPOTIFY_BASE_URL).newBuilder();
-        builder.addQueryParameter(Constants.SPOTIFY_SEARCH_ITEM, track);
+        HttpUrl.Builder  builder = HttpUrl.parse(Constants.DEEZER_BASE_URL).newBuilder();
+        builder.addQueryParameter(Constants.DEEZER_SEARCH_ITEM, track);
         String url = builder.build().toString();
         Request request = new Request.Builder()
                 .url(url)
-                .header("Authorization", Constants.SPOTIFY_TOKEN)
+                .header("Authorization", Constants.DEEZER_TOKEN)
                 .build();
         Call call = okHttpClient.newCall(request);
         call.enqueue(callback);

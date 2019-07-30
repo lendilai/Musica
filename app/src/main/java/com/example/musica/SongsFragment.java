@@ -27,6 +27,8 @@ public class SongsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_songs_list, container, false);
+        getSongs("eminem");
+        Log.i(TAG, "getSongs method passed");
         mRecyclerView = v.findViewById(R.id.songs_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
@@ -37,10 +39,6 @@ public class SongsFragment extends Fragment {
     private class SongHolder extends RecyclerView.ViewHolder{
         public SongHolder(LayoutInflater inflater, ViewGroup parent){
             super(inflater.inflate(R.layout.activity_songs, parent, false));
-        }
-
-        private void bing(){
-
         }
     }
 

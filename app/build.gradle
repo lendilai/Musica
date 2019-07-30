@@ -18,7 +18,7 @@ android {
         }
     }
     buildTypes.each{
-        it.buildConfigField('String', 'SPOTIFY_TOKEN', SpotifyToken)
+        it.buildConfigField('String', 'DEEZER_TOKEN', DeezerToken)
     }
 }
 
