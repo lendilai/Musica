@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 
 import java.lang.reflect.TypeVariable;
@@ -43,7 +44,7 @@ public class SpotifyService {
         try {
             String jsonData = response.body().string();
             JSONObject deezerJson = new JSONObject(jsonData);
-            JSONArray tracksArray = deezerJson.getJSONArray("track");
+            JSONArray tracksArray = deezerJson.getJSONArray("data");
             if (response.isSuccessful()){
                 Type listType = new TypeToken<List<Song>>() {}.getType();
                 foundSongs = gson.fromJson(tracksArray.toString(), listType);
