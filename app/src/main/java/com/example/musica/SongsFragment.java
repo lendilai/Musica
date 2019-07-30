@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -20,6 +21,7 @@ import okhttp3.Response;
 
 public class SongsFragment extends Fragment {
     public static final String TAG = "SongsActivity";
+    private ArrayList<Song> songs = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private SongAdapter mSongAdapter;
 
@@ -92,13 +94,16 @@ public class SongsFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try{
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                }
+                songs = spotifyService.processResults(response);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] songNames = new String[songs.size()];
+                        for (int i = 0; i<songNames.length; i++ ){
+                            songNames[i] = songs.get(i).getTitle();
+                        }
+                    }
+                });
             }
         });
     }
