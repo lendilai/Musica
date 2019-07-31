@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 String songName = mSongInput.getText().toString();
                 Intent intent = new Intent(MainActivity.this, SongsActivity.class);
-                intent.putExtra("songName", songName);
+                intent.putExtra("songs", songName);
                 startActivity(intent);
             }
         });

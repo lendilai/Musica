@@ -37,7 +37,7 @@ public class SongsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_songs_list, container, false);
-        String theSong = getActivity().getIntent().getStringExtra("songName").toString();
+        String theSong = getActivity().getIntent().getStringExtra("songs");
         Log.i(TAG, theSong);
         getSongs(theSong);
         Log.i(TAG, "getSongs method passed");

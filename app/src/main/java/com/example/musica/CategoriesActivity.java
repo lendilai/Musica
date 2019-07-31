@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class CategoriesActivity extends AppCompatActivity {
 
     private String[] categories;
-    private String[] descriptions;
+    private String[] names;
     private GridView gridView;
 
     @Override
@@ -21,19 +21,17 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         categories = getResources().getStringArray(R.array.categories);
-        descriptions = getResources().getStringArray(R.array.descriptions);
+        names = getResources().getStringArray(R.array.categoryNames);
         gridView = (GridView) findViewById(R.id.categories_grid);
-        gridView.setAdapter(new CategoriesAdapter(this, categories, descriptions));
+        gridView.setAdapter(new CategoriesAdapter(this, names, categories));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String mDescText = descriptions[i];
-//                Toast toast = Toast.makeText(CategoriesActivity.this, mDescText, Toast.LENGTH_SHORT);
-//                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-//                toast.sho
+                String mSearchChoice = categories[i];
                 Intent intent = new Intent(CategoriesActivity.this, SongsActivity.class);
-
+                intent.putExtra("songs", mSearchChoice);
+                startActivity(intent);
             }
         });
     }

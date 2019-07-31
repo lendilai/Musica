@@ -59,6 +59,18 @@
         <item>All This Time</item>
     </string-array>
     <string-array name="categories">
+        <item>kendrick</item>
+        <item>bon jovi</item>
+        <item>Ed sheeran</item>
+        <item>Ariana Grande</item>
+        <item>Wiz kid</item>
+        <item>Marshmello</item>
+        <item>Duke Ellington</item>
+        <item>Bob Marley</item>
+        <item>Maren Morris</item>
+        <item>j Balvin</item>
+    </string-array>
+    <string-array name="categoryNames">
         <item>Hip-Hop</item>
         <item>Rock</item>
         <item>Pop</item>
@@ -69,17 +81,5 @@
         <item>Reggae</item>
         <item>Country</item>
         <item>Latin</item>
-    </string-array>
-    <string-array name="descriptions">
-        <item>Cool beats with fast flow of words</item>
-        <item>Extraordinary music genre</item>
-        <item>Fast paced beats</item>
-        <item>Awesome voices</item>
-        <item>African beats</item>
-        <item>Beats only</item>
-        <item>Low key music</item>
-        <item>Straight outta Jamaica</item>
-        <item>Soothing</item>
-        <item>Latin all day</item>
     </string-array>
 </resources>
