@@ -6,58 +6,6 @@
     <string name="songs_text">All songs</string>
     <string name="genre_header">Music Genres</string>
     <string name="welcome_message">Welcome to Musica \n Where we bring the music to you</string>
-    <string-array name="songs">
-        <item>Not Afraid</item>
-        <item>Juicy</item>
-        <item>My name is</item>
-        <item>Time</item>
-        <item>Homicide</item>
-        <item>Isis</item>
-        <item>No Good</item>
-        <item>Blood // Water</item>
-        <item>Come with me now</item>
-        <item>So Close</item>
-        <item>All this time</item>
-    </string-array>
-    <string-array name="artists">
-        <item>Eminem</item>
-        <item>Biggie</item>
-        <item>Eminem</item>
-        <item>NF</item>
-        <item>Eminem ft Logic</item>
-        <item>Logic ft Joyner Lucas</item>
-        <item>KALEO</item>
-        <item>grandson</item>
-        <item>KONGOS</item>
-        <item>NOTD ft Felix Jaehn</item>
-        <item>Deorro</item>
-    </string-array>
-    <string-array name="duration">
-        <item>4:10</item>
-        <item>5:02</item>
-        <item>4:07</item>
-        <item>3:10</item>
-        <item>4:20</item>
-        <item>4:15</item>
-        <item>3:22</item>
-        <item>4:00</item>
-        <item>3:46</item>
-        <item>3:25</item>
-        <item>3:33</item>
-    </string-array>
-    <string-array name="albums">
-        <item>Recovery</item>
-        <item>Ready to Die</item>
-        <item>Recovery</item>
-        <item>The Search</item>
-        <item>Homicide</item>
-        <item>Isis</item>
-        <item>A / B</item>
-        <item>Blood // Water</item>
-        <item>Lunatic</item>
-        <item>So Close</item>
-        <item>All This Time</item>
-    </string-array>
     <string-array name="categories">
         <item>kendrick</item>
         <item>bon jovi</item>

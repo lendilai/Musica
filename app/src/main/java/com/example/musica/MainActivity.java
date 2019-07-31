@@ -1,7 +1,6 @@
 package com.example.musica;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -26,11 +25,10 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mCategoriesIcon = (LinearLayout) findViewById(R.id.categories);
-        mSongsIcon = (LinearLayout) findViewById(R.id.songs);
-        mTagPhrase = (TextView) findViewById(R.id.tag_phrase);
+        mCategoriesIcon = findViewById(R.id.categories);
+        mSongsIcon = findViewById(R.id.songs);
+        mTagPhrase = findViewById(R.id.tag_phrase);
         mSongInput = findViewById(R.id.song_input);
-        FragmentManager fragmentManager = getSupportFragmentManager();
         mSearchButton = findViewById(R.id.search_button);
         Typeface OpenSans = Typeface.createFromAsset(getAssets(), "fonts/PlayfairDisplaySC-Regular.otf");
         mTagPhrase.setTypeface(OpenSans);

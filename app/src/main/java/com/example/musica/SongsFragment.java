@@ -1,7 +1,6 @@
 package com.example.musica;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,9 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.parceler.Parcels;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -38,7 +35,6 @@ public class SongsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_songs_list, container, false);
         String theSong = getActivity().getIntent().getStringExtra("songs");
-        Log.i(TAG, theSong);
         getSongs(theSong);
         Log.i(TAG, "getSongs method passed");
         mRecyclerView = v.findViewById(R.id.songs_recycler_view);
@@ -46,10 +42,8 @@ public class SongsFragment extends Fragment {
         return v;
     }
 
-
-//Adapter
     public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder>{
-        private ArrayList<Song> mSongs = new ArrayList<>();
+        private ArrayList<Song> mSongs;
         private Context mContext;
 
 
@@ -110,23 +104,18 @@ public class SongsFragment extends Fragment {
         }
     }
 
-
-    //Fetch songs
     public void getSongs(String track){
         final SpotifyService spotifyService = new SpotifyService();
         spotifyService.findSong(track, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.i(TAG, "before running onResponse");
                 e.printStackTrace();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.i(TAG, "before running process results");
                 songs = spotifyService.processResults(response);
                 final String data = response.body().toString();
-                Log.i(TAG, "before running on the main thread");
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -142,87 +131,3 @@ public class SongsFragment extends Fragment {
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Previous viewHolder
-//    public class SongHolder extends RecyclerView.ViewHolder{
-//        private TextView mNameText;
-//        private TextView mArtistText;
-//        private TextView mDurationText;
-//        private Context mContext;
-//        private Song mSong;
-//
-//        public SongHolder(LayoutInflater inflater, ViewGroup parent){
-//            super(inflater.inflate(R.layout.activity_songs, parent, false));
-//            mNameText = itemView.findViewById(R.id.song_name);
-//            mArtistText = itemView.findViewById(R.id.song_artist);
-//            mDurationText = itemView.findViewById(R.id.song_duration);
-//            mContext = itemView.getContext();
-//        }
-//
-//        private void bind(Song song){
-//            mNameText.setText(song.getTitle());
-//            mArtistText.setText(song.getArtist());
-//            mDurationText.setText(song.getDuration().toString());
-//        }
-//    }
-//
-//    //Adapter
-//    private class SongAdapter extends RecyclerView.Adapter<SongHolder>{
-//        private Context mContext;
-//        private ArrayList<Song> mSongs;
-//
-//        public SongAdapter(Context context, ArrayList<Song> songs){
-//            mContext = context;
-//            mSongs = songs;
-//        }
-//
-//        @NonNull
-//        @Override
-//        public SongHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//            LayoutInflater inflater = LayoutInflater.from(getActivity());
-//            return new SongHolder(inflater, parent);
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(@NonNull SongHolder holder, int position) {
-//            Song song = mSongs.get(position);
-//            holder.bind(song);
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return mSongs.size();
-//        }
-//
-//    }
