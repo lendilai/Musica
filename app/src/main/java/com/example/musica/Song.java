@@ -2,10 +2,13 @@ package com.example.musica;
 
 import android.graphics.Point;
 
+import androidx.versionedparcelable.ParcelField;
+
 import com.google.gson.annotations.Expose;
+import org.parceler.Parcel;
 import com.google.gson.annotations.SerializedName;
 
-
+@Parcel
 public class Song {
     @SerializedName("id")
     @Expose

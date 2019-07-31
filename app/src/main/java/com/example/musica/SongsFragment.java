@@ -1,6 +1,7 @@
 package com.example.musica;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.parceler.Parcels;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -45,6 +48,7 @@ public class SongsFragment extends Fragment {
     public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder>{
         private ArrayList<Song> mSongs = new ArrayList<>();
         private Context mContext;
+
 
         @NonNull
         @Override
@@ -83,6 +87,16 @@ public class SongsFragment extends Fragment {
                 mArtistText = itemView.findViewById(R.id.song_artist);
                 mDurationText = itemView.findViewById(R.id.song_duration);
                 mContext = itemView.getContext();
+//                itemView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        int itemPosition = getLayoutPosition();
+//                        Intent intent = new Intent(mContext, SongDetailActivity.class);
+//                        intent.putExtra("position", itemPosition);
+//                        intent.putExtra("song", Parcels.wrap(mSongs));
+//                        mContext.startActivity(intent);
+//                    }
+//                });
             }
 
             public void bind(Song song){
@@ -95,7 +109,7 @@ public class SongsFragment extends Fragment {
 
 
     //Fetch songs
-    private void getSongs(String track){
+    public void getSongs(String track){
         final SpotifyService spotifyService = new SpotifyService();
         spotifyService.findSong(track, new Callback() {
             @Override
