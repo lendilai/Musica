@@ -2,6 +2,7 @@ package com.example.musica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -27,10 +28,12 @@ public class CategoriesActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String mDescText = descriptions[i];
-                Toast toast = Toast.makeText(CategoriesActivity.this, mDescText, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                toast.show();
+//                String mDescText = descriptions[i];
+//                Toast toast = Toast.makeText(CategoriesActivity.this, mDescText, Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+//                toast.sho
+                Intent intent = new Intent(CategoriesActivity.this, SongsActivity.class);
+
             }
         });
     }

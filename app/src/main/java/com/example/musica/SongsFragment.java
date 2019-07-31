@@ -32,11 +32,14 @@ public class SongsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private SongAdapter mSongAdapter;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_songs_list, container, false);
-        getSongs("eminem");
+        String theSong = getActivity().getIntent().getStringExtra("songName").toString();
+        Log.i(TAG, theSong);
+        getSongs(theSong);
         Log.i(TAG, "getSongs method passed");
         mRecyclerView = v.findViewById(R.id.songs_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

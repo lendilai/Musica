@@ -89,15 +89,26 @@
             android:gravity="center"
             />
         <EditText
-            android:layout_width="160dp"
+            android:layout_width="240dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/input_style"
             android:textColor="@color/plainWhite"
             android:hint="Search for a song"
+            android:id="@+id/song_input"
             android:paddingLeft="10dp"
             android:paddingTop="4dp"
             android:paddingBottom="3dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_search_icon"
+            android:drawableRight="@drawable/ic_search_icon"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/search_button"
+            />
 
         <ImageView
             android:id="@+id/imageView3"
