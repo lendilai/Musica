@@ -3,11 +3,11 @@ package com.example.musica;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class SongPagerAdapter extends FragmentStatePagerAdapter {
+public class SongPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Song> mSongs;
 
     public SongPagerAdapter(FragmentManager fragmentManager, ArrayList<Song> songs){

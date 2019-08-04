@@ -1,11 +1,13 @@
 package com.example.musica;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,8 @@ import org.parceler.Parcels;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.xml.datatype.Duration;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,7 +40,6 @@ public class SongsFragment extends Fragment {
         View v = inflater.inflate(R.layout.activity_songs_list, container, false);
         String theSong = getActivity().getIntent().getStringExtra("songs");
         getSongs(theSong);
-        Log.i(TAG, "getSongs method passed");
         mRecyclerView = v.findViewById(R.id.songs_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return v;
@@ -76,6 +79,7 @@ public class SongsFragment extends Fragment {
             private TextView mNameText;
             private TextView mArtistText;
             private TextView mDurationText;
+            private ImageView mShareButton;
             private Context mContext;
 
             public SongHolder(View itemView){
@@ -83,6 +87,18 @@ public class SongsFragment extends Fragment {
                 mNameText = itemView.findViewById(R.id.song_name);
                 mArtistText = itemView.findViewById(R.id.song_artist);
                 mDurationText = itemView.findViewById(R.id.song_duration);
+                mShareButton = itemView.findViewById(R.id.share_icon);
+                mShareButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, mSongs.get(getLayoutPosition()).getTitle() + " by " + mSongs.get(getLayoutPosition()).getArtist().getName());
+                        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.song_subject));
+                        intent = Intent.createChooser(intent, getString(R.string.share_on));
+                        startActivity(intent);
+                    }
+                });
                 mContext = itemView.getContext();
 //                itemView.setOnClickListener(new View.OnClickListener() {
 //                    @Override
@@ -90,7 +106,9 @@ public class SongsFragment extends Fragment {
 //                        int itemPosition = getLayoutPosition();
 //                        Intent intent = new Intent(mContext, SongDetailActivity.class);
 //                        intent.putExtra("position", itemPosition);
-//                        intent.putExtra("song", Parcels.wrap(mSongs));
+//                        String meh = mSongs.get(itemPosition).getTitle();
+//                        Log.i(TAG, meh);
+//                        intent.putExtra(SongDetailFragment.EXTRA_SONG_KEY, Parcels.wrap(mSongs));
 //                        mContext.startActivity(intent);
 //                    }
 //                });
@@ -99,7 +117,7 @@ public class SongsFragment extends Fragment {
             public void bind(Song song){
                 mNameText.setText(song.getTitle());
                 mArtistText.setText(song.getArtist().getName());
-                mDurationText.setText(song.getDuration());
+                mDurationText.setText(song.getDuration() + "  seconds");
             }
         }
     }

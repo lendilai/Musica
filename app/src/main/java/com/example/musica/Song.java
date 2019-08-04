@@ -8,53 +8,58 @@ import com.google.gson.annotations.Expose;
 import org.parceler.Parcel;
 import com.google.gson.annotations.SerializedName;
 
-//@Parcel
+@Parcel
 public class Song {
     @SerializedName("id")
     @Expose
-    private String id;
+    String id;
     @SerializedName("readable")
     @Expose
-    private Boolean readable;
+    Boolean readable;
     @SerializedName("title")
     @Expose
-    private String title;
+    String title;
     @SerializedName("title_short")
     @Expose
-    private String titleShort;
+    String titleShort;
     @SerializedName("title_version")
     @Expose
-    private String titleVersion;
+    String titleVersion;
     @SerializedName("link")
     @Expose
-    private String link;
+    String link;
     @SerializedName("duration")
     @Expose
-    private String duration;
+    String duration;
     @SerializedName("rank")
     @Expose
-    private String rank;
+    String rank;
     @SerializedName("explicit_lyrics")
     @Expose
-    private Boolean explicitLyrics;
+    Boolean explicitLyrics;
     @SerializedName("explicit_content_lyrics")
     @Expose
-    private Integer explicitContentLyrics;
+    Integer explicitContentLyrics;
     @SerializedName("explicit_content_cover")
     @Expose
-    private Integer explicitContentCover;
+    Integer explicitContentCover;
     @SerializedName("preview")
     @Expose
-    private String preview;
+    String preview;
     @SerializedName("artist")
     @Expose
-    private Artist artist;
+    Artist artist;
     @SerializedName("album")
     @Expose
-    private Album album;
+    Album album;
     @SerializedName("type")
     @Expose
-    private String type;
+    String type;
+
+    public Song(){
+
+    }
+
 
     public String getId() {
         return id;

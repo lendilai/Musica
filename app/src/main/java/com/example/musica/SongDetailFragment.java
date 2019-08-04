@@ -1,5 +1,6 @@
 package com.example.musica;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.view.LayoutInflater;
@@ -26,9 +27,13 @@ public class SongDetailFragment extends Fragment {
     private TextView mArtistName;
     private TextView mDuration;
     private Song mSong;
+    private ImageView mShareButton;
     private ViewPager mViewPager;
     private SongPagerAdapter mSongPagerAdapter;
-    ArrayList<Song> songs = new ArrayList<>();
+
+    public SongDetailFragment(){
+
+    }
 
     public static SongDetailFragment newInstance(Song song){
         SongDetailFragment songDetailFragment = new SongDetailFragment();
@@ -39,13 +44,9 @@ public class SongDetailFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSong = Parcels.unwrap(getArguments().getParcelable(EXTRA_SONG_KEY));
-        int startpos = getActivity().getIntent().getIntExtra("position", 0);
-        mSongPagerAdapter = new SongPagerAdapter(getFragmentManager(), songs);
-        mViewPager.setAdapter(mSongPagerAdapter);
-        mViewPager.setCurrentItem(startpos);
     }
 
     @Nullable
@@ -56,7 +57,6 @@ public class SongDetailFragment extends Fragment {
         mSongName = v.findViewById(R.id.detail_song_name);
         mArtistName = v.findViewById(R.id.detail_artist_name);
         mDuration = v.findViewById(R.id.detail_song_duration);
-        mViewPager = v.findViewById(R.id.song_details);
         Picasso.get().load(mSong.getArtist().getPictureBig()).into(mArtistImage);
         mSongName.setText(mSong.getTitle());
         mArtistName.setText(mSong.getArtist().getName());

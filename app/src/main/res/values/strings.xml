@@ -5,6 +5,8 @@
     <string name="categories_text">Genres</string>
     <string name="songs_text">All songs</string>
     <string name="genre_header">Music Genres</string>
+    <string name="song_subject">Check out this song from Musica</string>
+    <string name="share_on">Share on :</string>
     <string name="welcome_message">Welcome to Musica \n Where we bring the music to you</string>
     <string-array name="categories">
         <item>kendrick</item>
