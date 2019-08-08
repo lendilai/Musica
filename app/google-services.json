@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "644355447298",
+    "firebase_url": "https://musica-fc9ed.firebaseio.com",
+    "project_id": "musica-fc9ed",
+    "storage_bucket": "musica-fc9ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644355447298:android:e82f836c13d8c3e4",
+        "android_client_info": {
+          "package_name": "com.example.musica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644355447298-ps2d4lgnicuijv3s5cgq8ra3gp9t0s5e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.musica",
+            "certificate_hash": "ffa9fec30a5ac7726243ef053bf44c14629058a2"
+          }
+        },
+        {
+          "client_id": "644355447298-2hp1qkdi5it41dsjnma8khs5oli2qh6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN8yLbxPNq7fxEDvbvBQ5b93kuqgoqwGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644355447298-2hp1qkdi5it41dsjnma8khs5oli2qh6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
