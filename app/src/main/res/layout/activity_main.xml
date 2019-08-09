@@ -79,7 +79,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="300dp"
         android:checked="true"
-        android:text="Log out" />
+        android:text="Logged In" />
 
     <LinearLayout
         android:layout_width="wrap_content"

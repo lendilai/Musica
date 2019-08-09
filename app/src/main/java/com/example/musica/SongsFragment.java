@@ -7,6 +7,9 @@ import android.os.Bundle;
 import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,6 +22,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -116,8 +121,13 @@ public class SongsFragment extends Fragment {
                 mSaveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        DatabaseReference songsRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_SONGS);
-                        songsRef.push().setValue(mSongs);
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        String uid = user.getUid();
+                        DatabaseReference songsRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_SONGS).child(uid);
+                        DatabaseReference pushReference = songsRef.push();
+                        String pushId = pushReference.getKey();
+                        mSongs.get(getLayoutPosition()).setPushId(pushId);
+                        pushReference.setValue(mSongs.get(getLayoutPosition()));
                         Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -142,6 +152,31 @@ public class SongsFragment extends Fragment {
                 mDurationText.setText(song.getDuration() + "  seconds");
             }
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.musica_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.saved_songs:
+                Toast.makeText(getActivity(), "clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), SavedSongActivity.class);
+            startActivity(intent);
+            return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     public void getSongs(String track){

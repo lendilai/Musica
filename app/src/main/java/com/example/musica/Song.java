@@ -55,11 +55,19 @@ public class Song {
     @SerializedName("type")
     @Expose
     String type;
+    private String pushId;
 
     public Song(){
 
     }
 
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
 
     public String getId() {
         return id;
