@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -30,9 +37,14 @@ public class MainActivity extends AppCompatActivity{
     private static final String TAG  = MainActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
+    private DatabaseReference mDatabaseReference;
+    private ValueEventListener mValueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_SONG_NODE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mCategoriesIcon = findViewById(R.id.categories);
@@ -44,6 +56,21 @@ public class MainActivity extends AppCompatActivity{
         mLogOut = findViewById(R.id.LogOut);
         Typeface OpenSans = Typeface.createFromAsset(getAssets(), "fonts/PlayfairDisplaySC-Regular.otf");
         mTagPhrase.setTypeface(OpenSans);
+        mValueEventListener = mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot songData : dataSnapshot.getChildren()){
+                    String song = songData.getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreferences.edit();
         mSongsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +92,10 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 String songName = mSongInput.getText().toString();
+//                if (!songName.equals("")){
+//                    addToPreferences(songName);
+//                }
+                saveSongToDB(songName);
                 Intent intent = new Intent(MainActivity.this, SongsActivity.class);
                 intent.putExtra("songs", songName);
                 startActivity(intent);
@@ -90,6 +121,14 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    public void saveSongToDB(String song){
+        mDatabaseReference.push().setValue(song);
+    }
+//
+//    private void addToPreferences(String song){
+//        mEditor.putString(Constants.PREFERENCE_KEY, song).apply();
+//    }
+
     private void logout(){
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -110,5 +149,11 @@ public class MainActivity extends AppCompatActivity{
         if (mAuthStateListener != null){
             mAuth.removeAuthStateListener(mAuthStateListener);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mDatabaseReference.removeEventListener(mValueEventListener);
     }
 }

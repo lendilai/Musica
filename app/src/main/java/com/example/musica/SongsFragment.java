@@ -2,19 +2,25 @@ package com.example.musica;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
@@ -32,12 +38,18 @@ public class SongsFragment extends Fragment {
     private ArrayList<Song> songs;
     private RecyclerView mRecyclerView;
     private SongAdapter mSongAdapter;
-
+    private SharedPreferences mSharedPreferences;
+    private String mSongName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_songs_list, container, false);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        mSongName = mSharedPreferences.getString(Constants.PREFERENCE_KEY, null);
+//        if (mSongName != null){
+//            getSongs(mSongName);
+//        }
         String theSong = getActivity().getIntent().getStringExtra("songs");
         getSongs(theSong);
         mRecyclerView = v.findViewById(R.id.songs_recycler_view);
@@ -81,6 +93,7 @@ public class SongsFragment extends Fragment {
             private TextView mDurationText;
             private ImageView mShareButton;
             private Context mContext;
+            private ImageView mSaveButton;
 
             public SongHolder(View itemView){
                 super(itemView);
@@ -88,6 +101,7 @@ public class SongsFragment extends Fragment {
                 mArtistText = itemView.findViewById(R.id.song_artist);
                 mDurationText = itemView.findViewById(R.id.song_duration);
                 mShareButton = itemView.findViewById(R.id.share_icon);
+                mSaveButton = itemView.findViewById(R.id.save_icon);
                 mShareButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -97,6 +111,14 @@ public class SongsFragment extends Fragment {
                         intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.song_subject));
                         intent = Intent.createChooser(intent, getString(R.string.share_on));
                         startActivity(intent);
+                    }
+                });
+                mSaveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DatabaseReference songsRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_SONGS);
+                        songsRef.push().setValue(mSongs);
+                        Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT).show();
                     }
                 });
                 mContext = itemView.getContext();

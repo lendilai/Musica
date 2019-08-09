@@ -38,8 +38,18 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/ic_save_icon"
+        android:layout_marginLeft="-108dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="55dp"
+        android:padding="15dp"
+        android:id="@+id/save_icon"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_share_icon"
-        android:layout_marginLeft="-70dp"
+        android:layout_marginLeft="-60dp"
         android:layout_marginTop="7dp"
         android:padding="15dp"
         android:id="@+id/share_icon"
