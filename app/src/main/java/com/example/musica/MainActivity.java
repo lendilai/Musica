@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity{
     private EditText mSongInput;
     private Button mSearchButton;
     private Switch mLogOut;
-    private TextView mWelcome;
     private static final String TAG  = MainActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -52,8 +51,8 @@ public class MainActivity extends AppCompatActivity{
         mTagPhrase = findViewById(R.id.tag_phrase);
         mSongInput = findViewById(R.id.song_input);
         mSearchButton = findViewById(R.id.search_button);
-        mWelcome = findViewById(R.id.welcomeMessage);
         mLogOut = findViewById(R.id.LogOut);
+        mLogOut.setTextOff("Logged Out");
         Typeface OpenSans = Typeface.createFromAsset(getAssets(), "fonts/PlayfairDisplaySC-Regular.otf");
         mTagPhrase.setTypeface(OpenSans);
         mValueEventListener = mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
-                    mWelcome.setText("Welcome to Musica, " + user.getDisplayName());
+                    mLogOut.setText("Logged In as, " + user.getDisplayName());
                 }
             }
         };

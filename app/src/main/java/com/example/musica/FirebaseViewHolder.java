@@ -2,6 +2,7 @@ package com.example.musica;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,8 @@ public class FirebaseViewHolder extends RecyclerView.ViewHolder {
 
     public FirebaseViewHolder(View itemView){
         super(itemView);
+        ImageView saveIcon = itemView.findViewById(R.id.save_icon);
+        saveIcon.setVisibility(View.INVISIBLE);
         mView = itemView;
         mContext = itemView.getContext();
     }
