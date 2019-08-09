@@ -107,8 +107,8 @@
             android:paddingTop="4dp"
             android:paddingBottom="3dp"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_search_icon"
-            android:drawableRight="@drawable/ic_search_icon"
+            android:drawableStart="@drawable/ic_search_icon"
+            android:drawableLeft="@drawable/ic_search_icon"
             />
         <Button
             android:layout_width="wrap_content"
