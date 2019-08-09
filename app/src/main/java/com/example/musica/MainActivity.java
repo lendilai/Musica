@@ -4,10 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,8 +34,6 @@ public class MainActivity extends AppCompatActivity{
     private static final String TAG  = MainActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-//    private SharedPreferences mSharedPreferences;
-//    private SharedPreferences.Editor mEditor;
     private DatabaseReference mDatabaseReference;
     private ValueEventListener mValueEventListener;
 
@@ -68,8 +64,6 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
-//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        mEditor = mSharedPreferences.edit();
         mSongsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,9 +85,6 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 String songName = mSongInput.getText().toString();
-//                if (!songName.equals("")){
-//                    addToPreferences(songName);
-//                }
                 saveSongToDB(songName);
                 Intent intent = new Intent(MainActivity.this, SongsActivity.class);
                 intent.putExtra("songs", songName);
@@ -123,10 +114,6 @@ public class MainActivity extends AppCompatActivity{
     public void saveSongToDB(String song){
         mDatabaseReference.push().setValue(song);
     }
-//
-//    private void addToPreferences(String song){
-//        mEditor.putString(Constants.PREFERENCE_KEY, song).apply();
-//    }
 
     private void logout(){
         FirebaseAuth.getInstance().signOut();
