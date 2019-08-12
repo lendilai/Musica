@@ -2,8 +2,10 @@ package com.example.musica;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private DatabaseReference mDatabaseReference;
     private ValueEventListener mValueEventListener;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity{
         mSearchButton = findViewById(R.id.search_button);
         mLogOut = findViewById(R.id.LogOut);
         mLogOut.setTextOff("Logged Out");
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
         Typeface OpenSans = Typeface.createFromAsset(getAssets(), "fonts/PlayfairDisplaySC-Regular.otf");
         mTagPhrase.setTypeface(OpenSans);
         mValueEventListener = mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -86,6 +92,9 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 String songName = mSongInput.getText().toString();
                 saveSongToDB(songName);
+                if (!songName.equals("")){
+                    addToSharedPreferences(songName);
+                }
                 Intent intent = new Intent(MainActivity.this, SongsActivity.class);
                 intent.putExtra("songs", songName);
                 startActivity(intent);
@@ -113,6 +122,10 @@ public class MainActivity extends AppCompatActivity{
 
     public void saveSongToDB(String song){
         mDatabaseReference.push().setValue(song);
+    }
+
+    private void addToSharedPreferences(String song){
+        mEditor.putString(Constants.PREFERENCE_KEY, song).apply();
     }
 
     private void logout(){

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,12 +35,19 @@ public class SongsFragment extends Fragment {
     private ArrayList<Song> songs;
     private RecyclerView mRecyclerView;
     private SongAdapter mSongAdapter;
+    private SharedPreferences mSharedPreferences;
+    private String mSearchedSong;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_songs_list, container, false);
         String theSong = getActivity().getIntent().getStringExtra("songs");
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mSearchedSong = mSharedPreferences.getString(Constants.PREFERENCE_KEY, null);
+        if (mSearchedSong != null){
+            getSongs(mSearchedSong);
+        }
         getSongs(theSong);
         mRecyclerView = v.findViewById(R.id.songs_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
