@@ -27,7 +27,6 @@ public class SavedSongFragment extends Fragment {
     private DatabaseReference mDatabaseReference;
     private FirebaseRecyclerAdapter<Song, FirebaseViewHolder> mFirebaseRecyclerAdapter;
     private RecyclerView mRecyclerView;
-    @BindView(R.id.share_icon) ImageView mShareButton;
 
     @Nullable
     @Override
@@ -37,14 +36,6 @@ public class SavedSongFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_SONGS).child(uid);
-        mShareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent = Intent.createChooser(intent, getString(R.string.share_on));
-                startActivity(intent);
-            }
-        });
         setUpFireBaseAdapter();
         return v;
     }
