@@ -1,4 +1,4 @@
-package com.example.musica;
+package com.example.musica.adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.musica.R;
+import com.example.musica.models.Song;
 
 public class FirebaseViewHolder extends RecyclerView.ViewHolder {
 

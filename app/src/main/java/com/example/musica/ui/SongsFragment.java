@@ -1,4 +1,4 @@
-package com.example.musica;
+package com.example.musica.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,11 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.musica.constants.Constants;
+import com.example.musica.R;
+import com.example.musica.service.SpotifyService;
+import com.example.musica.models.Song;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

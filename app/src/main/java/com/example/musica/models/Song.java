@@ -1,9 +1,7 @@
-package com.example.musica;
+package com.example.musica.models;
 
-import android.graphics.Point;
-
-import androidx.versionedparcelable.ParcelField;
-
+import com.example.musica.models.Album;
+import com.example.musica.models.Artist;
 import com.google.gson.annotations.Expose;
 import org.parceler.Parcel;
 import com.google.gson.annotations.SerializedName;

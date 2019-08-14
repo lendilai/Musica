@@ -1,4 +1,4 @@
-package com.example.musica;
+package com.example.musica.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import com.example.musica.adapters.CategoriesAdapter;
+import com.example.musica.R;
 
 public class CategoriesActivity extends AppCompatActivity {
 

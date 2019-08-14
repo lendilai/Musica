@@ -1,4 +1,6 @@
-package com.example.musica;
+package com.example.musica.constants;
+
+import com.example.musica.BuildConfig;
 
 public class Constants {
     public static final String DEEZER_TOKEN = BuildConfig.DEEZER_TOKEN;

@@ -1,10 +1,12 @@
-package com.example.musica;
+package com.example.musica.ui;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.example.musica.R;
 
 public abstract class CommonFragmentActivity extends AppCompatActivity {
     protected abstract Fragment createFragment();
