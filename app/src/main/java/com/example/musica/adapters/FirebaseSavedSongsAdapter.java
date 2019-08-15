@@ -106,8 +106,7 @@ public class FirebaseSavedSongsAdapter extends FirebaseRecyclerAdapter<Song, Fir
         for (Song song : mSongs){
             int index = mSongs.indexOf(song);
             DatabaseReference ref = getRef(index);
-            song.setIndex(Integer.toString(index));
-            ref.setValue(song);
+            ref.child("index").setValue(Integer.toString(index));
         }
     }
 

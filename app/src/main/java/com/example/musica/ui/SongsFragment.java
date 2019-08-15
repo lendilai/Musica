@@ -1,9 +1,13 @@
 package com.example.musica.ui;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,8 +33,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -42,6 +49,8 @@ public class SongsFragment extends Fragment {
     private SongAdapter mSongAdapter;
     private SharedPreferences mSharedPreferences;
     private String mSearchedSong;
+    public static final int IMAGE_REQUEST_CODE = 1;
+    private ImageView mUserImage;
 
     @Nullable
     @Override
@@ -49,6 +58,7 @@ public class SongsFragment extends Fragment {
         View v = inflater.inflate(R.layout.activity_songs_list, container, false);
         String theSong = getActivity().getIntent().getStringExtra("songs");
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mUserImage = v.findViewById(R.id.user_image);
         mSearchedSong = mSharedPreferences.getString(Constants.PREFERENCE_KEY, null);
         if (mSearchedSong != null){
             getSongs(mSearchedSong);
@@ -156,15 +166,43 @@ public class SongsFragment extends Fragment {
             Intent intent = new Intent(getActivity(), SavedSongActivity.class);
             startActivity(intent);
             return true;
+//            case R.id.camera_icon:
+//                launchCamera();
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == getActivity().RESULT_OK){
+            Bundle bundle = data.getExtras();
+            Bitmap userImage = (Bitmap) bundle.get("data");
+            mUserImage.setImageBitmap(userImage);
+            encodeBitmapAndSaveToFireBase(userImage);
+        }
+    }
+
+    public void encodeBitmapAndSaveToFireBase(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("userImageUrl");
+        reference.setValue(encodedImage);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    private void launchCamera(){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null){
+            startActivityForResult(intent, IMAGE_REQUEST_CODE);
+        }
     }
 
     public void getSongs(String track){

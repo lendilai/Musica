@@ -6,13 +6,17 @@ import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -26,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -42,12 +48,28 @@ public class MainActivity extends AppCompatActivity{
     private ValueEventListener mValueEventListener;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+    private ImageView mUserImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_SONG_NODE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mUserImage = findViewById(R.id.user_image);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user.getPhotoUrl() == null){
+            mUserImage.setImageResource(R.drawable.ic_musica);
+        }
+        else {
+            try {
+                Bitmap image = decodeFromBase64(user.getPhotoUrl().toString());
+                mUserImage.setImageBitmap(image);
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+
         mCategoriesIcon = findViewById(R.id.categories);
         mSongsIcon = findViewById(R.id.songs);
         mTagPhrase = findViewById(R.id.tag_phrase);
@@ -136,6 +158,11 @@ public class MainActivity extends AppCompatActivity{
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    public static Bitmap decodeFromBase64(String image) throws Exception{
+        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 100, decodedByteArray.length);
     }
 
     @Override

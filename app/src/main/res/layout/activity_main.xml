@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
         >
         <LinearLayout
             android:layout_width="wrap_content"
@@ -72,13 +73,28 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Switch
-        android:id="@+id/LogOut"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="300dp"
-        android:checked="true" />
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/user_image"
+            android:background="@drawable/circle"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="200dp"
+            />
+        <Switch
+            android:id="@+id/LogOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:checked="true" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
