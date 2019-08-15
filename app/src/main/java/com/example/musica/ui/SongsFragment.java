@@ -166,8 +166,8 @@ public class SongsFragment extends Fragment {
             Intent intent = new Intent(getActivity(), SavedSongActivity.class);
             startActivity(intent);
             return true;
-//            case R.id.camera_icon:
-//                launchCamera();
+            case R.id.camera_icon:
+                launchCamera();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -175,6 +175,7 @@ public class SongsFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        mUserImage = getView().findViewById(R.id.user_image);
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == getActivity().RESULT_OK){
             Bundle bundle = data.getExtras();
             Bitmap userImage = (Bitmap) bundle.get("data");
@@ -187,8 +188,9 @@ public class SongsFragment extends Fragment {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("userImageUrl");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(Constants.USER_IMAGE).child(uid);
         reference.setValue(encodedImage);
     }
 
@@ -210,6 +212,7 @@ public class SongsFragment extends Fragment {
         spotifyService.findSong(track, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+
                 e.printStackTrace();
             }
 
