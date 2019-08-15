@@ -95,15 +95,18 @@ public class SongsFragment extends Fragment {
             private TextView mDurationText;
             private ImageView mShareButton;
             private Context mContext;
+            private ImageView mDragIcon;
             private ImageView mSaveButton;
 
             public SongHolder(View itemView){
                 super(itemView);
                 mNameText = itemView.findViewById(R.id.song_name);
                 mArtistText = itemView.findViewById(R.id.song_artist);
+                mDragIcon = itemView.findViewById(R.id.drag_icon);
                 mDurationText = itemView.findViewById(R.id.song_duration);
                 mShareButton = itemView.findViewById(R.id.share_icon);
                 mSaveButton = itemView.findViewById(R.id.save_icon);
+                mDragIcon.setVisibility(View.GONE);
                 mShareButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

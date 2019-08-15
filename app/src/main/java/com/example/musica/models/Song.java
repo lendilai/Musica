@@ -54,6 +54,7 @@ public class Song {
     @Expose
     String type;
     private String pushId;
+    String index;
 
     public Song(){
 
@@ -69,6 +70,14 @@ public class Song {
 
     public String getId() {
         return id;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public String getIndex() {
+        return index;
     }
 
     public void setId(String id) {
