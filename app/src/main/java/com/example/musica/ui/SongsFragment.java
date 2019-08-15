@@ -166,8 +166,8 @@ public class SongsFragment extends Fragment {
             Intent intent = new Intent(getActivity(), SavedSongActivity.class);
             startActivity(intent);
             return true;
-            case R.id.camera_icon:
-                launchCamera();
+//            case R.id.camera_icon:
+//                launchCamera();
             default:
                 return super.onOptionsItemSelected(item);
         }
